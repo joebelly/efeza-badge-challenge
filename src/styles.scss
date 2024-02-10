@@ -8,6 +8,48 @@ $level-1:#d9d9d9;
 $level-2:#f3f3f3;
 
 
+.bg-sec{
+    background-color: $level-1;
+}
+
+.border-sec{
+    border: 1px solid $main-more-light;
+}
+
+.border-l{
+  border: 6px solid $main-more-light;
+
+
+}
+
+.text-main{
+    color:$main
+}
+
+.text-main-1{
+  color:$main-less-light
+}
+
+.text-main-2{
+  color:$main-more-light
+}
+
+.bg-main{
+  background-color:$main
+}
+
+.bg-main-1{
+  background-color:$main-more-light
+}
+
+.border-main-right{
+  border-right:10px solid $main-less-light
+}
+
+.border-main-bottom{
+  border-bottom:5px solid $main
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -22,7 +64,7 @@ $level-2:#f3f3f3;
   }
   
   .title {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;

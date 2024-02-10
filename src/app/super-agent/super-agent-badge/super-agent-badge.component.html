@@ -1,6 +1,6 @@
 <main>
   <div>
-    <div>
+    <div class="mt-4">
       <div class="w-100 m-auto d-flex justify-content-center">
         <div>
           <img 
@@ -11,37 +11,224 @@
 
       </div>
       <div>
-        <div class="w-100 d-flex justify-content-center">
-            <form class="form">
-              <p class="title">Generer votre badge </p>
-                  <div class="flex mb-2">
-                  <label>
-                      <input class="input" type="text" placeholder="" required="">
-                      <span>Prenom</span>
-                  </label>
+        <div class="w-100 mt-5 d-flex justify-content-center">
+          <form [formGroup]="badgeForm" class="form" >
+            <p class="title">Generer votre badge</p>
           
-                  <label>
-                      <input class="input" type="text" placeholder="" required="">
-                      <span>Nom</span>
-                  </label>
-              </div>  
-                      
-              <label class="mb-2">
-                  <input class="input" type="email" placeholder="" required="">
-                  <span>Code super agent</span>
-              </label> 
-              <label class="mb-4">
-                <input class="input" type="email" placeholder="" required="">
-                <span>Numero de telephone</span>
-            </label> 
-                  
-              
-              
-              <button class="submit">Generer</button>
+            <div class="upload-section w-100 mb-3">
+
+              <input id="upload-input" type="file" (change)="previewImage($event)" style="display: none;">
+
+              <div class="w-100 d-flex justify-content-center">
+                <label role="button" for="upload-input" class="camera-icon">
+                  <span *ngIf="!imageUrl" class="bg-sec border border-secondary rounded-circle d-flex justify-content-center align-items-center" style="width: 100px; height:100px">
+                    <i class="fa fa-camera fs-1 text-main"></i>
+                  </span>
+                  <div *ngIf="imageUrl" class="bg-sec border border-secondary rounded-circle d-flex justify-content-center align-items-center" style="height: 100px; width:100px">
+                    <img style="width: 100px; height: 100px" [src]="imageUrl" class="img-fluid rounded-circle" alt="Preview">
+                  </div>
+                </label>
+              </div>
+            </div>
+          
+            <div class="flex mb-2 w-100">
+              <label class="mb-2 w-50">
+                <input class="input" type="text" placeholder="" formControlName="firstName" required>
+                <span>Prenom</span>
+                <small *ngIf="badgeForm.get('firstName').invalid && badgeForm.get('firstName').touched" class="text-danger">Le prenom est obligatoire</small>
+              </label>
+              <label class="mb-2 w-50">
+                <input class="input" type="email" placeholder="" formControlName="lastName" required>
+                <span>Nom</span>
+                <small *ngIf="badgeForm.get('lastName').invalid && badgeForm.get('lastName').touched" class="text-danger">Le nom est obligatoire</small>
+              </label>
+            </div>
+          
+            <label class="mb-2">
+              <input class="input" type="email" maxlength="5" placeholder="" formControlName="superAgentCode" required>
+              <span>Code Super Agent</span>
+              <small *ngIf="badgeForm.get('superAgentCode').invalid && badgeForm.get('superAgentCode').touched" class="text-danger">Le code super agent est obligatoire</small>
+            </label>
+          
+            <label class="mb-4">
+              <input class="input" type="text" placeholder="" formControlName="phoneNumber" required>
+              <span>Numéro de téléphone</span>
+              <small *ngIf="badgeForm.get('phoneNumber').invalid && badgeForm.get('phoneNumber').touched" class="text-danger">Le numero de telephone est obligatoire</small>
+            </label>
+            <div>
+            <button 
+            type="submit" 
+            *ngIf="badgeForm.valid"
+
+            class="submit w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            (click)="isModalShown=true"
+            >Generer</button>
+            <button 
+            *ngIf="!badgeForm.valid"
+            type="submit" 
+            class="submit w-100"
+            >Generer</button>
+
+
+
+
+            </div>
+          
           </form>
+          
+          
         </div>
 
       </div>
     </div>
   </div>
+
+
+  <!-- Agent code badge-->
+
+
+  <section
+        style="transition: all 2s"
+        class="modal-overlay"
+        (click)="closeModal($event)"
+        *ngIf="isModalShown"
+    >
+    
+        <div
+            class="bg-white border-l position-relative inner-container mx-1 h-50 lg-radius"
+            style="min-width: 25%"
+        >
+
+        <div class="">
+          <div>
+            <div class="w-100 p-2 m-auto d-flex justify-content-between">
+              <div>
+                <img 
+                src="../../../assets/images/logo efeza.png"
+                style="width:100px"
+                 alt="">
+              </div>
+              <!-- <div>
+                <div class="bg-main p-1 d-flex align-items-center justify-content-center">
+                  <b class="fs-3 text-white">*220#</b>
+                </div>
+              </div> -->
+              <div>
+                <div class="d-grid ">
+                  <span class="d-flex justify-content-end" role="button">
+                    <i class="fa fa-camera fs-3"></i>
+                  </span>
+                  <div class="bg-white d-grid shadow rounded">
+                    <div class="p-2">
+                      <span>Enregistrer</span>
+                    </div>
+                    <div class="p-2">
+                      <span>Imprimer</span>
+                    </div>
+
+                  </div>
+                </div>
+                
+              </div>
+      
+            </div>
+            <div class="w-100 mb-5 pb-3 d-flex justify-content-center p-2">
+              <b class="fs-3 text-main-1 pb-2 border-main-bottom">SUPER AGENT EFEZA</b>
+            </div>
+            <div class="d-flex align-items-start p-2">
+              <div class="border-main-right pe-3">
+                <div>
+                  <img 
+                  [src]="badgeForm.value.photo"
+                  style="width:150px; max-height:150px"
+                   alt="">
+                </div>
+
+              </div>
+              <div class="p-2">
+                <div class="row" >
+                  <div class="col-6 mb-3 d-grid">
+                    <small>Prenom</small>
+                    <b class="text-main-1 fs-5">{{badgeForm.value.firstName}}</b>
+                  </div>
+                  <div class="col-6 mb-3 d-grid">
+                    <small>Nom</small>
+                    <b class="text-main-1 fs-5">{{badgeForm.value.lastName}}</b>
+                  </div>
+                  <div class="col-6 mb-3 d-grid">
+                    <small>Code</small>
+                    <b class="text-main-1 fs-5">{{badgeForm.value.superAgentCode}}</b>
+                  </div>
+                  <div class="col-6 mb-3 d-grid">
+                    <small>Telephone</small>
+                    <b class="text-main-1 fs-5">{{badgeForm.value.phoneNumber}}</b>
+                  </div>
+                  
+                  
+                  
+                </div>
+              </div>
+              <div>
+
+              </div>
+              <div>
+
+              </div>
+
+
+            </div>
+            <div>
+              <div class="w-100 mt-lg-5 m-md-3 m-sm-1 d-flex justify-content-center p-2">
+                <div class="d-flex fs-6"
+              style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                 <b class="text-main me-2">Umuhora uhuza</b>  
+                  <b class="text-main-2 me-2">Lumitel, Econet</b>
+                  <b class="text-main me-2">na</b>
+                  <b class="text-main-2">Onamob</b>
+              </div>
+              </div>
+              
+            </div>
+            <div 
+            class="p-1 bg-main-1 w-100 position-absolute"
+            style="bottom:0"
+            >
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center text-white">
+                <span class="me-2">
+                  <i class="fa fa-camera"></i>
+                </span>
+                <span class="me-2">
+                  <i class="fa fa-camera"></i>
+                </span>
+                <span class="me-2">
+                  <i class="fa fa-camera"></i>
+                </span>
+                <span class="me-2">
+                  <i class="fa fa-camera"></i>
+                </span>
+                <span>efeza burundi</span>
+              </div>
+              <div class="d-flex align-items-center text-white">
+                <span class="me-2">
+                  <i class="fa fa-camera"></i>
+                </span>
+                
+                <span>www.efeza.bi</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+           
+
+            
+        </div>
+    </section>
+  
+
+
+
 </main>
