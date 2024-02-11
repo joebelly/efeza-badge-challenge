@@ -109,14 +109,11 @@ export class SuperAgentBadgeComponent implements OnInit {
       format: [pageWidth, pageHeight]
     });
   
-    // Convert modal content to image
     html2canvas(modalContent, { scale: 4 }).then(canvas => {
       const imageData = canvas.toDataURL('image/png');
 
-      // Add image to PDF
       pdf.addImage(imageData, 'PNG', 0, 0, pageWidth, pageHeight);
 
-      // Save PDF
       pdf.save(`efeza-badge-${this.badgeForm.value.firstName}.pdf`);
     });
   }
