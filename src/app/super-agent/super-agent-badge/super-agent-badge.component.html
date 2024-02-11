@@ -12,7 +12,7 @@
       </div>
       <div>
         <div class="w-100 mt-5 d-flex justify-content-center">
-          <form [formGroup]="badgeForm" class="form" >
+          <form [formGroup]="badgeForm" class="form mx-2" >
             <p class="title">Generer votre badge</p>
           
             <div class="upload-section w-100 mb-3">
@@ -65,7 +65,10 @@
             data-bs-target="#myModal"
             (click)="isModalShown=true"
             >Generer</button>
-            <button 
+
+            <small *ngIf="badgeForm.invalid && !isFormValid" class="text-danger mb-3">Le formulaire n'est pas complet, veuillez remplir tous les champs</small>
+            <button
+            (click)="checkGlobalForm()" 
             *ngIf="!badgeForm.valid"
             type="submit" 
             class="submit w-100"
@@ -110,8 +113,8 @@
           </span>
           <div 
           *ngIf="isMenuShown"
-          style="transform: translateX(-70%); z-index:10"
-          class="bg-white shadow border border-secondary position-absolute  rounded d-grid px-2">
+          style="transform: translateX(-70%); z-index:10; width:200px"
+          class="bg-white shadow position-absolute  rounded d-grid px-2">
             <div class="py-2"
             role="button"
             (click)="saveAsImage()">
@@ -138,7 +141,7 @@
             (click)="saveAsPDF('A6')">
               <span>Save as pdf A6</span>
             </div>
-            <hr class="my-1">
+            <!-- <hr class="my-1"> -->
 
 
           </div>
@@ -217,7 +220,7 @@
 
       </div>
       <div>
-        <div class="w-100 mt-lg-5 m-md-3 m-sm-1 d-flex justify-content-center p-2">
+        <div class="w-100 mb-4 d-flex justify-content-center p-2">
           <div class="d-flex fs-6"
         style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
            <b class="text-main me-2">Umuhora uhuza</b>  
@@ -232,30 +235,21 @@
       class="p-1 bg-main-1 w-100 position-absolute"
       style="bottom:0"
       >
-      <!-- <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center text-white">
           <span class="me-2">
-            <i class="fa fa-camera"></i>
+            <i class="fa-regular fa-envelope"></i>
           </span>
-          <span class="me-2">
-            <i class="fa fa-camera"></i>
-          </span>
-          <span class="me-2">
-            <i class="fa fa-camera"></i>
-          </span>
-          <span class="me-2">
-            <i class="fa fa-camera"></i>
-          </span>
-          <span>efeza burundi</span>
+          <span>info@efeza.bi</span>
         </div>
         <div class="d-flex align-items-center text-white">
           <span class="me-2">
-            <i class="fa fa-camera"></i>
+            <i class="fa fa-globe"></i>
           </span>
           
           <span>www.efeza.bi</span>
         </div>
-      </div> -->
+      </div>
     </div>
     </div>
   </div>

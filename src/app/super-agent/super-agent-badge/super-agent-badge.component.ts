@@ -13,6 +13,7 @@ export class SuperAgentBadgeComponent implements OnInit {
   badgeForm!: FormGroup | any;
   imageUrl: any;
   isModalShown:boolean=false
+  isFormValid:boolean=true
 
   isMenuShown:boolean=false
   @ViewChild('myModal') myModal: ElementRef | any;
@@ -32,7 +33,6 @@ export class SuperAgentBadgeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Function to handle image preview
   previewImage(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -51,6 +51,13 @@ export class SuperAgentBadgeComponent implements OnInit {
 
   checkGlobalForm(){
 
+    if(!this.badgeForm.valid){
+      this.isFormValid=false
+
+    }
+
+
+
 
   }
 
@@ -68,7 +75,7 @@ export class SuperAgentBadgeComponent implements OnInit {
       
       const link = document.createElement('a');
       link.href = image;
-      link.download = 'badge.png'; 
+      link.download = `efeza-badge-${this.badgeForm.value.firstName}.png`; 
       link.click(); 
     });
   }
@@ -76,39 +83,37 @@ export class SuperAgentBadgeComponent implements OnInit {
   saveAsPDF(pageSize: string) {
     const modalContent = this.myModal.nativeElement;
   
-    // Determine page dimensions based on user selection
+
     let pageWidth, pageHeight;
     switch (pageSize) {
       case 'A4':
-        pageWidth = 297; // Swap width and height for landscape orientation
+        pageWidth = 297;
         pageHeight = 210;
         break;
       case 'A5':
-        pageWidth = 210; // Swap width and height for landscape orientation
+        pageWidth = 210;
         pageHeight = 148;
         break;
       case 'A6':
-        pageWidth = 148; // Swap width and height for landscape orientation
+        pageWidth = 148;
         pageHeight = 105;
         break;
       default:
-        pageWidth = 297; // Default to A4 landscape
+        pageWidth = 297;
         pageHeight = 210;
         break;
     }
   
-    // Create new jsPDF instance with landscape orientation and specified page dimensions
     const pdf = new jsPDF({
       orientation: 'landscape',
       unit: 'mm',
       format: [pageWidth, pageHeight]
     });
   
-    // Add HTML content (badge section) to the PDF document
     const options = {
       callback: (pdf:any) => {
-        // Save PDF document
-        pdf.save('badge.pdf');
+
+        pdf.save(`efeza-badge-${this.badgeForm.value.firstName}.pdf`);
       }
     };
   
