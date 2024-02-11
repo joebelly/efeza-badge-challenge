@@ -83,8 +83,7 @@ export class SuperAgentBadgeComponent implements OnInit {
   saveAsPDF(pageSize: string) {
     const modalContent = this.myModal.nativeElement;
   
-
-    let pageWidth, pageHeight;
+    let pageWidth:any, pageHeight:any;
     switch (pageSize) {
       case 'A4':
         pageWidth = 297;
@@ -110,14 +109,16 @@ export class SuperAgentBadgeComponent implements OnInit {
       format: [pageWidth, pageHeight]
     });
   
-    const options = {
-      callback: (pdf:any) => {
+    // Convert modal content to image
+    html2canvas(modalContent, { scale: 4 }).then(canvas => {
+      const imageData = canvas.toDataURL('image/png');
 
-        pdf.save(`efeza-badge-${this.badgeForm.value.firstName}.pdf`);
-      }
-    };
-  
-    pdf.html(modalContent, options);
+      // Add image to PDF
+      pdf.addImage(imageData, 'PNG', 0, 0, pageWidth, pageHeight);
+
+      // Save PDF
+      pdf.save(`efeza-badge-${this.badgeForm.value.firstName}.pdf`);
+    });
   }
 
 
