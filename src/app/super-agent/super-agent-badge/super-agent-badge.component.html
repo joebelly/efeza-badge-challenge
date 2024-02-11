@@ -94,7 +94,7 @@
 
   <section
         style="transition: all 2s"
-        class="modal-overlay"
+        class="modal-overlay d-grid align-items-center justify-content-center"
         (click)="closeModal($event)"
         *ngIf="isModalShown"
     >
@@ -181,6 +181,8 @@
             <img 
             [src]="badgeForm.value.photo"
           class="border-less"
+          style="width: 150px; height:150px"
+          
 
              alt="">
           </div>
