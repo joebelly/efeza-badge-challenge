@@ -8,6 +8,23 @@ $level-1:#d9d9d9;
 $level-2:#f3f3f3;
 
 
+@font-face {
+  font-family: "lato";
+  src: url("../src/assets/fonts/Lato-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "lato";
+  src: url("../src/assets/fonts/Lato-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+
+*{
+  font-family: lato;
+}
 
 
 .bg-sec{
@@ -160,7 +177,7 @@ $level-2:#f3f3f3;
   
   .form label .input:focus + span,
   .form label .input:valid + span {
-    color: $main-less-light;
+    color: black;
     top: 0px;
     font-size: 0.7em;
     font-weight: 600;

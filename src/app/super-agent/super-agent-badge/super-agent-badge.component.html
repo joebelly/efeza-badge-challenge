@@ -107,48 +107,15 @@
     <div class="d-flex justify-content-end mb-1">
       <div>
         <div>
-          <span 
-          role="button" 
-          class="shadow d-flex justify-content-center align-items-center rounded-circle p-2 px-3"
-          style="border:2px solid white;"
-          (click)="showMenu()"
-          >
-            <i class="fa fa-ellipsis-vertical text-white fs-4"></i>
-          </span>
-          <div 
-          *ngIf="isMenuShown"
-          style="transform: translateX(-70%); z-index:10; width:200px"
-          class="bg-white shadow position-absolute  rounded d-grid px-2">
-            <div class="py-2"
-            role="button"
-            (click)="saveAsImage()">
-              <span>Save as image</span>
-            </div>
-            <hr class="my-1">
-            <div 
-            class="py-2"
-            role="button"
-            (click)="saveAsPDF('A4')">
-              <span>Save as pdf A4</span>
-            </div>
-            <hr class="my-1">
-            <div 
-            class="py-2"
-            role="button"
-            (click)="saveAsPDF('A5')">
-              <span>Save as pdf A5</span>
-            </div>
-            <hr class="my-1">
-            <div 
-            class="py-2"
-            role="button"
-            (click)="saveAsPDF('A6')">
-              <span>Save as pdf A6</span>
-            </div>
-            <!-- <hr class="my-1"> -->
 
+          <select  name="" id="">
+            <option value="" selected>Enregistrer</option>
+            <option value="" (click)="saveAsImage()">pdf</option>
+            <option value="" (click)="saveAsPDF('A6')">image</option>
 
-          </div>
+          </select>
+
+      
         </div>
       </div>
 
@@ -260,8 +227,21 @@
     </div>
   </div>
      
-
+<!--* qr code and save options-->
       
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+      <li><a class="dropdown-item active" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
   </div>
     </div>
     
