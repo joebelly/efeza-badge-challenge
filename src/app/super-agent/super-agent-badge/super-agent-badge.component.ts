@@ -77,6 +77,7 @@ export class SuperAgentBadgeComponent implements OnInit {
       link.href = image;
       link.download = `efeza-badge-${this.badgeForm.value.firstName}.png`; 
       link.click(); 
+      this.toggleMenu()
     });
   }
 
@@ -115,6 +116,7 @@ export class SuperAgentBadgeComponent implements OnInit {
       pdf.addImage(imageData, 'PNG', 0, 0, pageWidth, pageHeight);
 
       pdf.save(`efeza-badge-${this.badgeForm.value.firstName}.pdf`);
+      this.toggleMenu()
     });
   }
 
