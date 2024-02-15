@@ -61,7 +61,7 @@ export class SuperAgentBadgeComponent implements OnInit {
 
   }
 
-  showMenu(){
+  toggleMenu(){
     this.isMenuShown=!this.isMenuShown
   }
 
@@ -94,8 +94,8 @@ export class SuperAgentBadgeComponent implements OnInit {
         pageHeight = 148;
         break;
       case 'A6':
-        pageWidth = 148;
-        pageHeight = 105;
+        pageWidth = 150;
+        pageHeight = 150;
         break;
       default:
         pageWidth = 297;
@@ -104,7 +104,7 @@ export class SuperAgentBadgeComponent implements OnInit {
     }
   
     const pdf = new jsPDF({
-      orientation: 'landscape',
+      orientation: 'portrait',
       unit: 'mm',
       format: [pageWidth, pageHeight]
     });
