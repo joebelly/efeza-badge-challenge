@@ -21,6 +21,7 @@ export class SuperAgentBadgeComponent implements OnInit {
 
   
   constructor() {
+    const doc = new jsPDF();
     this.badgeForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -29,6 +30,16 @@ export class SuperAgentBadgeComponent implements OnInit {
       photo: new FormControl('', Validators.required)
     });
   }
+
+  async generateCanvas() {
+  const html2canvas = (await import('html2canvas')).default;
+  const element = document.getElementById('your-element-id');
+  if (element) {
+    const canvas = await html2canvas(element);
+    document.body.appendChild(canvas); // Exemple : ajouter le canvas au DOM
+  }
+}
+
 
   ngOnInit() {
   }
